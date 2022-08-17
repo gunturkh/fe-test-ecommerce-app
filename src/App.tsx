@@ -5,6 +5,7 @@ import "tailwindcss/tailwind.css";
 import Home from "pages";
 import CartPage from "pages/cart";
 import { Container, Footer, Header } from "components";
+import ProductDetailPage from "pages/productDetail";
 
 function App(): JSX.Element {
   return (
@@ -13,6 +14,7 @@ function App(): JSX.Element {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/cart" element={<CartPage />} />
+        <Route path="/product/:productId" element={<ProductDetailPage />} />
       </Routes>
       <Footer />
     </Container>

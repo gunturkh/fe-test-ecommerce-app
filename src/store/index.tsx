@@ -44,7 +44,9 @@ interface Ecommerce {
   inc: () => void;
   dec: () => void;
   ecommerceProducts: EcommerceProducts;
+  ecommerceProduct: Product;
   getProducts: () => void;
+  getProduct: (id: number) => void;
   userCart: UserCart;
   getUserCart: () => void;
 }
@@ -59,10 +61,27 @@ export const useStore = create<Ecommerce>((set) => ({
     total: 0,
     products: [],
   },
+  ecommerceProduct: {
+    id: 1,
+    title: "iPhone 9",
+    description: "An apple mobile which is nothing like apple",
+    price: 549,
+    discountPercentage: 12.96,
+    rating: 4.69,
+    stock: 94,
+    brand: "Apple",
+    category: "smartphones",
+    thumbnail: "...",
+    images: ["...", "...", "..."],
+  },
   userCart: { skip: 0, limit: 10, total: 0, carts: [] },
   getProducts: async () => {
     const response = await axios.get("https://dummyjson.com/products");
     set({ ecommerceProducts: response?.data });
+  },
+  getProduct: async (id: number) => {
+    const response = await axios.get(`https://dummyjson.com/products/${id}`);
+    set({ ecommerceProduct: response?.data });
   },
   getUserCart: async () => {
     const response = await axios.get("https://dummyjson.com/carts/user/5");

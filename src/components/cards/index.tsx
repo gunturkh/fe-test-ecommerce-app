@@ -1,8 +1,10 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import { useStore } from "store";
 
 export const Cards: React.FC = () => {
   const ecommerceProducts = useStore((state) => state.ecommerceProducts);
+  const navigate = useNavigate();
   console.log("ecommerceProducts", ecommerceProducts);
   return (
     <div className="flex-1 container my-8 max-w-screen-lg mx-auto p-5">
@@ -10,7 +12,8 @@ export const Cards: React.FC = () => {
         {ecommerceProducts?.products?.map((product, idx) => (
           <div
             key={`product-${idx}`}
-            className="flex flex-col col-span-1 rounded-md border border-gray-300 p-5"
+            className="flex flex-col col-span-1 rounded-md border border-gray-300 p-5 hover:shadow-lg cursor-pointer"
+            onClick={() => navigate(`product/${product.id}`)}
           >
             <div className="flex justify-center">
               <img
