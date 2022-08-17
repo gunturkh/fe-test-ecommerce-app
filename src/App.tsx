@@ -12,8 +12,9 @@ function App(): JSX.Element {
     <Container>
       <Header />
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route index element={<Home />} />
         <Route path="/cart" element={<CartPage />} />
+        <Route path="/product/:productId" element={<ProductDetailPage />} />
         <Route path="/product/:productId" element={<ProductDetailPage />} />
       </Routes>
       <Footer />
