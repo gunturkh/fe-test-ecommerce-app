@@ -26,12 +26,22 @@ export const Cards: React.FC = () => {
               {product?.category || ""}
             </h3>
             <div className="flex flex-row justify-between">
-              <h3 className="text-lg font-semibold mb-2 text-red-500">
-                you save {product?.discountPercentage || ""}%
+              <h3
+                className={`text-lg font-semibold mb-2 ${
+                  product?.discountPercentage ? "line-through" : ""
+                }`}
+              >
+                US${product?.price || ""}
               </h3>
-              <h3 className="text-lg font-semibold mb-2 ">
-                ${product?.price || ""}
-              </h3>
+              {product?.discountPercentage && (
+                <h3 className="text-lg font-semibold mb-2 text-red-500">
+                  US$
+                  {(
+                    product?.price -
+                    product?.price * (product?.discountPercentage / 100)
+                  ).toFixed(2)}
+                </h3>
+              )}
             </div>
             <p className="m-0 flex-1">{product.description}</p>
             <div className="mt-4 grid grid-cols-2">
