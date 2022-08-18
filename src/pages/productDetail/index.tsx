@@ -80,8 +80,22 @@ const ProductDetailPage: React.FC = () => {
           </div>
           <p className="m-0 flex-1">{ecommerceProduct.description}</p>
           <Button
-            onClick={() => {
-              window.alert(`Success add ${ecommerceProduct.title} to cart`);
+            onClick={async () => {
+              
+              const response = await fetch(`https://dummyjson.com/carts/19`, {
+                method: "PUT",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                  products: [
+                    {
+                      id: ecommerceProduct?.id,
+                      quantity: 1,
+                    },
+                  ],
+                }),
+              });
+              if(response) window.alert(`Success add ${ecommerceProduct.title} to cart`);
+              console.log("response add product ", response);
             }}
           >
             Add to cart

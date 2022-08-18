@@ -1,12 +1,14 @@
 import axios from "axios";
 import { Button } from "components";
 import React, { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { useStore } from "store";
 
 const CartPage: React.FC = () => {
   const userCart = useStore((state) => state.userCart);
   const getUserCart = useStore((state) => state.getUserCart);
   const updateCart = useStore((state) => state.updateCart);
+  const navigate = useNavigate();
 
   useEffect(() => {
     getUserCart();
@@ -100,6 +102,16 @@ const CartPage: React.FC = () => {
         <h1 className="text-right">
           Discounted Total: US$ {userCart?.carts[0]?.discountedTotal}
         </h1>
+        <Button
+          onClick={() => {
+            window.alert(
+              "Successfully Checkout, Navigating to Last Visited Product"
+            );
+            navigate(-1);
+          }}
+        >
+          Checkout
+        </Button>
       </div>
     </div>
   );
